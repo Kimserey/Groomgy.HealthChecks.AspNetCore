@@ -1,0 +1,10 @@
+<Project>
+ <PropertyGroup>
+    <Authors>Kimserey Lam</Authors>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <RepositoryUrl>https://github.com/Kimserey/Groomgy.HealthChecks.AspNetCore</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseUrl>https://github.com/Kimserey/Groomgy.HealthChecks.AspNetCore/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Kimserey/Groomgy.HealthChecks.AspNetCore</PackageProjectUrl>
+ </PropertyGroup>
+</Project>
