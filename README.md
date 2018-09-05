@@ -142,6 +142,68 @@ The default endpint is on `/health` but can be overriden with the configuration:
 }
 ```
 
+## Sqlite Healthcheck extension
+
+The Sqlite healtcheck can be used to check the exitence of database and tables.
+Install the extension with the following command:
+
+```
+Install-Package Groomgy.HealthChecks.AspNetCore.Sqlite
+```
+
+And register the healthcheck:
+
+```
+c.AddSqliteCheck("[myconnectionstring]", "tableA", "tableB");
+```
+
+The existence of `tableA` and `tableB` will be checked against the database from the connection string provided.
+
+## Microsoft.Orleans Healthcheck extension
+
+For Microsoft.Orleans, the healtcheck is build to ensure that the client can access the Orleans cluster. It is done via a single grain implementing the `IAmAlive` grain interface.
+Install the extension with the following command:
+
+```
+Install-Package Groomgy.HealthChecks.AspNetCore.Orleans
+```
+
+The extension needs to be installed in the projects:
+
+ 1. Client project
+ 2. Grain project
+
+From the client project, register the 
+
+```
+var client = builder
+    .ConfigureApplicationParts(partManager =>
+    {
+		// ... other application part
+        partManager.AddApplicationPart(typeof(IIAmAlive).Assembly).WithReferences();
+    })
+    .Build();
+```
+
+Next create the grain in your grain project:
+
+```
+[StatelessWorker]
+public class IAmAliveGrain : Grain, IIAmAlive
+{
+    public Task<bool> Check()
+    {
+        return Task.FromResult(true);
+    }
+}
+```
+
+Lastly register the healthcheck:
+
+```
+c.AddOrleansClientCheck();
+```
+
 ## License
 
 MIT
