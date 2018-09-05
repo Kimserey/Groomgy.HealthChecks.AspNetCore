@@ -8,6 +8,7 @@ A Health Check library for ASP.NET Core.
 | Groomgy.HealthChecks.AspNetCore.Sqlite  | [![Build status](https://ci.appveyor.com/api/projects/status/eouclq5a93ix6yp8?svg=true)](https://ci.appveyor.com/project/Kimserey16189/groomgy-healthchecks-aspnetcore) | [![NuGet](https://img.shields.io/nuget/v/Groomgy.HealthChecks.AspNetCore.Sqlite.svg?style=flat&colorB=blue)](http://www.nuget.org/packages/Groomgy.HealthChecks.AspNetCore.Sqlite) |
 | Groomgy.HealthChecks.AspNetCore.Orleans | [![Build status](https://ci.appveyor.com/api/projects/status/eouclq5a93ix6yp8?svg=true)](https://ci.appveyor.com/project/Kimserey16189/groomgy-healthchecks-aspnetcore) | [![NuGet](https://img.shields.io/nuget/v/Groomgy.HealthChecks.AspNetCore.Orleans.svg?style=flat&colorB=blue)](http://www.nuget.org/packages/Groomgy.HealthChecks.AspNetCore.Orleans) |
 
+
 ## Install library
 
 Install the healthchecks library with the following command:
