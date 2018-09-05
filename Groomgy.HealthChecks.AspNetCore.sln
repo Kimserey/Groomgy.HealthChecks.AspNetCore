@@ -19,7 +19,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Groomgy.HealthChecks.AspNetCore.Sqlite", "Groomgy.HealthChecks.AspNetCore.Sqlite\Groomgy.HealthChecks.AspNetCore.Sqlite.csproj", "{86750E6C-5B0D-4E30-8314-829F0F79CF77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groomgy.HealthChecks.AspNetCore.Orleans", "Groomgy.HealthChecks.AspNetCore.Orleans\Groomgy.HealthChecks.AspNetCore.Orleans.csproj", "{FE82F57A-2419-413B-9CCB-7BE53D612FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Groomgy.HealthChecks.AspNetCore.Orleans", "Groomgy.HealthChecks.AspNetCore.Orleans\Groomgy.HealthChecks.AspNetCore.Orleans.csproj", "{FE82F57A-2419-413B-9CCB-7BE53D612FB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{B00F5089-8A6C-4E38-B675-C689116B2F90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groomgy.HealthChecks.AspNetCore.Sample.WebA", "samples\Groomgy.HealthChecks.AspNetCore.Sample.WebA\Groomgy.HealthChecks.AspNetCore.Sample.WebA.csproj", "{A1317EA6-7E3B-44EE-AD4E-CEE93033CCE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groomgy.HealthChecks.AspNetCore.WebB", "samples\Groomgy.HealthChecks.AspNetCore.WebB\Groomgy.HealthChecks.AspNetCore.WebB.csproj", "{4E0BD719-F521-48C6-A019-E2E678F5A64B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +45,21 @@ Global
 		{FE82F57A-2419-413B-9CCB-7BE53D612FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE82F57A-2419-413B-9CCB-7BE53D612FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE82F57A-2419-413B-9CCB-7BE53D612FB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1317EA6-7E3B-44EE-AD4E-CEE93033CCE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1317EA6-7E3B-44EE-AD4E-CEE93033CCE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1317EA6-7E3B-44EE-AD4E-CEE93033CCE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1317EA6-7E3B-44EE-AD4E-CEE93033CCE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E0BD719-F521-48C6-A019-E2E678F5A64B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E0BD719-F521-48C6-A019-E2E678F5A64B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E0BD719-F521-48C6-A019-E2E678F5A64B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E0BD719-F521-48C6-A019-E2E678F5A64B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A1317EA6-7E3B-44EE-AD4E-CEE93033CCE2} = {B00F5089-8A6C-4E38-B675-C689116B2F90}
+		{4E0BD719-F521-48C6-A019-E2E678F5A64B} = {B00F5089-8A6C-4E38-B675-C689116B2F90}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF70CE4F-44E4-40D8-A1E0-F6643240AA0E}
