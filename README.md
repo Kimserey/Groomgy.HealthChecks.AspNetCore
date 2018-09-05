@@ -132,13 +132,13 @@ services.AddHealthChecks(c => ..., new[] { PolicyHandler.Timeout(2) });
 
 ## Health endpoint path
 
-The default endpint is on `/health` but can be overriden with the configuration:
+The default endpint is on `/health` but can be overriden with the configuration in `appsettings.json`:
 
 ```
 {
-	"endpoints": {
-		"health": "/internal/__health"
-	}
+  "endpoints": {
+    "health": "/internal/__health"
+  }
 }
 ```
 
