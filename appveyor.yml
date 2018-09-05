@@ -29,11 +29,11 @@ artifacts:
   - path: .\artifacts\**\*.nupkg
 
 deploy:
-#  - provider: NuGet
-#    api_key:
-#      secure:
-#    on:
-#      appveyor_repo_tag: true
+  - provider: NuGet
+    api_key:
+      secure: 3/Qg61O7sC/kWaQk9M3vc44AaGcIqv251J1xsaTwW64mwjQ6DaA8ZGb9p4RpqVlD
+    on:
+      appveyor_repo_tag: true
 
   - provider: GitHub
     description: ''
