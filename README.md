@@ -70,6 +70,78 @@ public class MyClass
 
 The result will be a `CompositeHealthCheckResult` which combine all checks together and return a failure if any of the check fails.
 
+```
+{
+  "results": [
+    {
+      "name": "SelfCheck",
+      "status": "Healthy",
+      "message": "WebA is running."
+    },
+    {
+      "name": "UrlCheck",
+      "status": "Healthy",
+      "message": "Successfully contacted url 'https://my-identity/.well-known/openid-configuration'. Message: Authority is accessible."
+    }
+  ],
+  "compositeStatus": "Healthy"
+}
+```
+
+If for example, the remote dependency is not accessible, the check will be unhealthy.
+
+```
+{
+  "results": [
+    {
+      "name": "SelfCheck",
+      "status": "Healthy",
+      "message": "WebA is running."
+    },
+    {
+      "name": "UrlCheck",
+      "status": "Unhealthy",
+      "message": "Failed to contact url 'https://my-identity/.well-known/openid-configuration'. Message: The delegate executed asynchronously through TimeoutPolicy did not complete within the timeout."
+    }
+  ],
+  "compositeStatus": "Unhealthy"
+}
+```
+
+## Url check policies
+
+The default `UrlCheck` implements two Polly policies, `WaitAndRetry` and `Timeout`. 
+
+```
+public static IAsyncPolicy<HttpResponseMessage> WaitAndRetry(int retryCount = 5) =>
+    HttpPolicyExtensions
+        .HandleTransientHttpError()
+        .OrResult(msg => msg.StatusCode == HttpStatusCode.NotFound)
+        .Or<TimeoutRejectedException>()
+        .WaitAndRetryAsync(retryCount, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+
+public static IAsyncPolicy<HttpResponseMessage> Timeout(int seconds = 2) =>
+    Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(seconds));
+```
+
+An extension on the service collection can be used to override those policies and set your own. For example if we do not want the `WaitAndRetry` but only want the `Timeout`, we could do it like so:
+
+```
+services.AddHealthChecks(c => ..., new[] { PolicyHandler.Timeout(2) });
+```
+
+## Health endpoint path
+
+The default endpint is on `/health` but can be overriden with the configuration:
+
+```
+{
+	"endpoints": {
+		"health": "/internal/__health"
+	}
+}
+```
+
 ## License
 
 MIT

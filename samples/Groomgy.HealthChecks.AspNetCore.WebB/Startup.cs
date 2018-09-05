@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,10 @@ namespace Groomgy.HealthChecks.AspNetCore.WebB
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks(c =>
+            {
+                c.AddSelfCheck("WebB is running.");
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -22,8 +27,11 @@ namespace Groomgy.HealthChecks.AspNetCore.WebB
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHealthChecksEndpoint();
+
             app.Run(async (context) =>
             {
+                Thread.Sleep(TimeSpan.FromSeconds(10));
                 await context.Response.WriteAsync("Hello World!");
             });
         }
