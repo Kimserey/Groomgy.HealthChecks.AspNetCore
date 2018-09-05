@@ -8,15 +8,11 @@ namespace Groomgy.HealthChecks.AspNetCore.Orleans
     {
         private readonly string _name;
         private readonly Func<IGrainFactory> _factory;
-        private readonly string _clusterId;
-        private readonly Action<string> _onError;
 
-        public OrleansClientCheck(Func<IGrainFactory> factory, string clusterId, Action<string> onError = null)
+        public OrleansClientCheck(Func<IGrainFactory> factory)
         {
             _name = typeof(OrleansClientCheck).Name;
             _factory = factory;
-            _clusterId = clusterId;
-            _onError = onError;
         }
 
         public async Task<HealthCheckResult> Check()
@@ -31,7 +27,7 @@ namespace Groomgy.HealthChecks.AspNetCore.Orleans
                     {
                         Name = _name,
                         Status = CheckStatus.Healthy,
-                        Message = $"Successfully accessed Orleans Cluster '{_clusterId}' from client."
+                        Message = $"Successfully accessed Orleans Cluster."
                     };
                 }
                 else
@@ -40,7 +36,7 @@ namespace Groomgy.HealthChecks.AspNetCore.Orleans
                     {
                         Name = _name,
                         Status = CheckStatus.Unhealthy,
-                        Message = $"Failed to access Orleans Cluster '{_clusterId}' from client. IAmAlive grain check returned failed state."
+                        Message = $"Failed to access Orleans Cluster. IAmAlive grain check returned failed state."
                     };
                 }
             }
@@ -50,7 +46,7 @@ namespace Groomgy.HealthChecks.AspNetCore.Orleans
                 {
                     Name = _name,
                     Status = CheckStatus.Unhealthy,
-                    Message = $"Failed to access Orleans Cluster '{_clusterId}' from client. Message: " + ex.Message
+                    Message = $"Failed to access Orleans Cluster. Message: " + ex.Message
                 };
             }
         }
