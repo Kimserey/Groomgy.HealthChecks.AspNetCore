@@ -18,7 +18,14 @@ namespace Groomgy.HealthChecks.AspNetCore
 
         public async Task Invoke(HttpContext context, IConfiguration configuration, IHealthCheckService healthCheckService)
         {
-            if (context.Request.Path.Equals(configuration["endpoints:healthcheck"]) && context.Request.Method == HttpMethods.Get)
+            var endpoint = configuration["endpoints:healthcheck"];
+
+            if (string.IsNullOrWhiteSpace(endpoint))
+            {
+                endpoint = "/health";
+            }
+
+            if (context.Request.Path.Equals(endpoint) && context.Request.Method == HttpMethods.Get)
             {
                 var result = await healthCheckService.CheckAll();
 
